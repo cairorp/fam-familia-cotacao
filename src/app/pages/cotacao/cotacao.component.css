@@ -1,0 +1,113 @@
+.search-form {
+  padding: 24px;
+  background: #fbfbfb;
+  border: 1px solid #d9d9d9;
+  border-radius: 0 0 6px 6px;
+}
+
+.field{
+  margin-top: 10px;
+}
+
+.panel-title {
+  color: #fbfbfb;
+  text-align: center;
+  font-weight: bolder;
+  font-size: medium;
+  padding: 12px;
+  background: #5876a5;
+  border: 1px solid #304463;
+  border-radius: 6px 6px 0 0;
+}
+
+[nz-form-label] {
+  overflow: visible;
+}
+
+html{
+  height:  100% !important;
+}
+
+.search-area {
+  text-align: right;
+}
+
+nz-select {
+  margin: 0 8px 10px 0;
+  width: 120px;
+}
+nz-divider {
+  color: #333;
+  font-weight: normal;
+}
+.inner-box {
+  background: #0092ff;
+  padding: 8px 0;
+}
+
+nz-select {
+  width: 100%;
+  text-align: center;
+}
+
+nz-date-picker {
+  text-align-last: center;
+  margin: 0 8px 12px 0;
+  width: 100%;
+}
+
+nz-slider{
+  width: 100%;
+}
+
+.align-right{
+  text-align: right;
+}
+
+.align-left{
+  text-align: left;
+}
+
+.align-center{
+  text-align: center;
+  justify-content: center;
+}
+
+.title-slider{
+  padding-bottom: 10px !important;
+}
+
+.margin-top-10px{
+  margin-top: 30px;
+}
+
+.title{
+  font-weight: bold;
+}
+
+.botao-contratacao{
+  background: #5876a5;
+  border-radius: 0.25rem;
+  padding-left: 30px;
+  padding-right: 30px;
+  height: 40px;
+  border: 1px solid #304463;
+  font-weight: bold;
+}
+
+.botao-contratacao:disabled{
+  color: #cccccc;
+}
+
+.padding-left-25{
+  padding-left: 25px !important;
+}
+
+.padding-right-25{
+  padding-right: 25px !important;
+}
+
+.margin-top-5px{
+  margin-top: 5px;
+}
+

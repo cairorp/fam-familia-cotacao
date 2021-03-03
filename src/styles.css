@@ -1,0 +1,35 @@
+/* You can add global styles to this file, and also import other style files */
+.ant-slider-track{
+  background-color: #e00900;
+}
+
+.ant-slider:hover .ant-slider-track{
+  background-color: #e00900;
+}
+
+.ant-slider-handle{
+  border: 2px solid #e00900;
+  background-color: #e00900;
+  height: 30px;
+  width: 30px;
+  margin-top: -13px;
+}
+
+.ant-slider:hover .ant-slider-handle:not(.ant-tooltip-open) {
+  border-color: #e00900;
+}
+
+.ant-slider-handle:focus {
+  border-color: #e00900;
+  box-shadow: 0 0 0 5px rgba(255,0,0,0.13) !important;
+}
+
+nz-content.ant-layout-content{
+  text-align: center;
+}
+
+@media only screen and (min-width: 1080px) {
+  .inner-content{
+    width: 70%;
+  }
+}

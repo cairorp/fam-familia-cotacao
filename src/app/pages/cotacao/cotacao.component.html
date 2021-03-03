@@ -1,0 +1,171 @@
+<nz-breadcrumb [nzSeparator]="iconTemplate" style="padding-bottom: 20px;">
+  <nz-breadcrumb-item>Home</nz-breadcrumb-item>
+  <nz-breadcrumb-item>Cotacao</nz-breadcrumb-item>
+  <nz-breadcrumb-item>Contratar</nz-breadcrumb-item>
+</nz-breadcrumb>
+<ng-template #iconTemplate><em nz-icon nzType="arrow-right"></em></ng-template>
+
+<div class="panel-title">
+  FAÇA SUA COTAÇÃO AGORA
+</div>
+<div nz-row [nzGutter]="16" [hidden]="autenticado">
+  <div nz-col [nzSpan]="24"
+       style="justify-content: center; margin-top: 50px; margin-bottom: 50px; text-align: center">
+    <app-login (auth)="auth($event)"></app-login>
+  </div>
+</div>
+<form nz-form
+      class="search-form" [formGroup]="cotacaoForm" [hidden]="!autenticado">
+  <div nz-row [nzGutter]="16">
+    <div nz-col class="gutter-row padding-right-25" [nzSpan]="12">
+      <label>
+        <span class="title">Segmento</span>
+        <nz-select class="field"
+                   formControlName="segmento"
+                   nzPlaceHolder="Selecione o segmento"
+                   (ngModelChange)="carregarTiposAssociados()"
+                   nzAllowClear>
+          <nz-option *ngFor="let segmento of segmentos"
+                     [nzValue]="segmento"
+                     [nzLabel]="segmento.descricao"></nz-option>
+        </nz-select>
+      </label>
+    </div>
+    <div nz-col class="gutter-row padding-left-25" [nzSpan]="12">
+      <label>
+        <span class="title">Publico alvo</span>
+        <nz-select class="field"
+                   formControlName="tipoAssociado"
+                   nzPlaceHolder="Selecione o publico alvo"
+                   [nzDisabled]="tiposAssociados.length == 0"
+                   nzAllowClear>
+          <nz-option *ngFor="let tipoAssociado of tiposAssociados"
+                     [nzValue]="tipoAssociado"
+                     [nzLabel]="tipoAssociado.descricao"></nz-option>
+        </nz-select>
+      </label>
+    </div>
+  </div>
+  <div nz-row [nzGutter]="16">
+    <div nz-col class="gutter-row padding-right-25" [nzSpan]="12">
+      <label>
+        <span class="title">Data de nascimento</span>
+        <nz-date-picker class="field"
+                        formControlName="dataNascimento"
+                        (nzOnOpenChange)="validarDataNascimento($event)"
+                        nzFormat="dd/MM/yyyy"></nz-date-picker>
+      </label>
+    </div>
+    <div nz-col class="gutter-row padding-left-25" [nzSpan]="12">
+      <label>
+        <span class="title">Profissão</span>
+        <nz-select class="field"
+                   nzShowSearch
+                   nzAllowClear
+                   nzPlaceHolder="Selecione a profissão"
+                   formControlName="profissao">
+          <nz-option *ngFor="let profissao of profissoes"
+                     [nzValue]="profissao"
+                     [nzLabel]="profissao.descricao"></nz-option>
+        </nz-select>
+      </label>
+    </div>
+  </div>
+  <div nz-row [nzGutter]="16">
+
+    <div nz-col class="gutter-row title-slider" [nzSpan]="24">
+
+      <span class="title">Capital segurado</span>
+
+    </div>
+  </div>
+  <div nz-row [nzGutter]="16">
+    <div nz-col
+         class="gutter-row align-left"
+         [nzSpan]="12" [hidden]="cotacaoForm.invalid">
+      <span>{{valorMinimo | currency:'BRL'}}</span>
+    </div>
+    <div nz-col
+         class="gutter-row align-right"
+         [nzSpan]="12"
+         [hidden]="cotacaoForm.invalid">
+      <span>{{valorMaximo | currency: 'BRL'}}</span>
+    </div>
+  </div>
+  <div nz-row [nzGutter]="16">
+    <div nz-col class="gutter-row" [nzSpan]="24">
+
+      <nz-slider formControlName="valorEscolhido"
+                 [nzMin]="valorMinimo"
+                 [nzMax]="valorMaximo"
+                 [nzStep]="50"
+                 [nzDisabled]="cotacaoForm.invalid"
+                 [nzTipFormatter]="formatarValorParaReal">
+      </nz-slider>
+    </div>
+  </div>
+
+  <div nz-row class="margin-top-5px" [nzGutter]="16">
+    <div nz-col class="gutter-row align-center" [nzSpan]="24" [hidden]="cotacaoForm.invalid">
+      <span class="title">{{cotacaoForm.controls.valorEscolhido.value | currency:'BRL'}}</span>
+    </div>
+  </div>
+  <div nz-row class="margin-top-10px" [nzGutter]="16">
+    <div nz-col class="gutter-row align-left" [nzSpan]="12">
+      <span class="title">Coberturas basicas</span>
+    </div>
+    <div nz-col class="gutter-row align-right" [nzSpan]="12">
+      <span class="title">Valor de cobertura</span>
+    </div>
+  </div>
+
+  <nz-divider nzOrientation="left"></nz-divider>
+
+  <div nz-row [nzGutter]="16" *ngFor="let cobertura of contrato.coberturaBasica">
+    <div nz-col class="gutter-row align-left" [nzSpan]="12">
+      <span>{{cobertura.descricao}}</span>
+    </div>
+    <div nz-col class="gutter-row align-right" [nzSpan]="12">
+      <span>{{cobertura.capitalPorCobertura | currency:'BRL'}}</span>
+    </div>
+  </div>
+
+  <div nz-row class="margin-top-10px" [nzGutter]="16">
+    <div nz-col class="gutter-row align-left" [nzSpan]="12">
+      <span class="title">Coberturas opcionais</span>
+    </div>
+    <div nz-col class="gutter-row align-right" [nzSpan]="12">
+      <span class="title">Valor de cobertura</span>
+    </div>
+  </div>
+
+  <nz-divider nzOrientation="left"></nz-divider>
+
+  <div nz-row [nzGutter]="16" *ngFor="let coberturaOpcional of contrato.coberturaOpcional">
+    <div nz-col class="gutter-row align-left" [nzSpan]="10">
+      <span>{{coberturaOpcional.descricao}}</span>
+    </div>
+    <div nz-col class="gutter-row align-left" [nzSpan]="4">
+      <label nz-checkbox
+             formControlName="{{coberturaOpcional.rotulo}}"
+             [nzValue]="coberturaOpcional.ativo"
+             [nzDisabled]="coberturaOpcional.desabilitar"
+             (nzCheckedChange)="marcarCobertura(coberturaOpcional.id)"
+             [hidden]="cotacaoForm.invalid"></label>
+    </div>
+    <div nz-col class="gutter-row align-right" [nzSpan]="10">
+      <span>{{coberturaOpcional.capitalPorCobertura | currency:'BRL'}}</span>
+    </div>
+  </div>
+
+  <div nz-row class="margin-top-10px" [nzGutter]="16" [hidden]="cotacaoForm.invalid">
+    <div nz-col class="gutter-row align-right title" [nzSpan]="24">
+      <span>Valor do prêmio: {{contrato.valor | currency:'BRL'}}</span>
+    </div>
+  </div>
+
+  <div nz-row class="margin-top-10px align-center" style="height: 50px" [nzGutter]="16">
+    <button nz-button nzType="primary" [hidden]="cotacaoForm.invalid" class="botao-contratacao">INICIAR CONTRACAÇÃO
+    </button>
+  </div>
+</form>
