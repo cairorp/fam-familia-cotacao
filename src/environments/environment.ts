@@ -4,6 +4,7 @@
 
 export const environment = {
   url:'http://localhost:3000',
+  clientId: '648417020131-ffjn0okoheik99moekrnk0p66o73vjjf.apps.googleusercontent.com',
   production: false,
   iof: 0.0038,
   valorMinimoSeguro: 50000,

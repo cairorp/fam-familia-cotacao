@@ -1,4 +1,5 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {environment} from '../../../../../environments/environment';
 
 @Component(
   {
@@ -32,7 +33,7 @@ export class LoginComponent implements OnInit{
 
     return pload.then(async () => {
       await gapi.auth2
-        .init({ client_id: '648417020131-ffjn0okoheik99moekrnk0p66o73vjjf.apps.googleusercontent.com' })
+        .init({ client_id: `${environment.clientId}` })
         .then(auth => {
           this.gapiSetup = true;
           this.authInstance = auth;
