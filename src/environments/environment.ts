@@ -3,7 +3,7 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  url:'http://localhost:3000',
+  url:'https://my-json-server.typicode.com/cairorp/fam-familia-cotacao',
   clientId: '23928312060-ohp4pq4eq8g5s967el03rbgue5kdv3qm.apps.googleusercontent.com',
   production: false,
   iof: 0.0038,
