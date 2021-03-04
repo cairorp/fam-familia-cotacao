@@ -66,7 +66,7 @@
                    formControlName="profissao">
           <nz-option *ngFor="let profissao of profissoes"
                      [nzValue]="profissao"
-                     [nzLabel]="profissao.descricao"></nz-option>
+                     [nzLabel]="profissao.descricao.toUpperCase()"></nz-option>
         </nz-select>
       </label>
     </div>
