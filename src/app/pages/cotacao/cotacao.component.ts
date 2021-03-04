@@ -59,7 +59,7 @@ export interface TaxaPorCobertura {
   templateUrl: 'cotacao.component.html'
 })
 export class CotacaoComponent implements OnInit {
-  urlBase = 'http://localhost:3000';
+  urlBase = `${environment.url}`;
   segmentos: Segmento[] = [];
   tiposAssociados: TipoAssociado[] = [];
   limitesPorIdade: LimitePorIdade[] = [];

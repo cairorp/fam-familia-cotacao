@@ -1,4 +1,4 @@
-<nz-breadcrumb [nzSeparator]="iconTemplate" style="padding-bottom: 20px;">
+<nz-breadcrumb [nzSeparator]="iconTemplate" style="padding-bottom: 20px; text-align: left;">
   <nz-breadcrumb-item>Home</nz-breadcrumb-item>
   <nz-breadcrumb-item>Cotacao</nz-breadcrumb-item>
   <nz-breadcrumb-item>Contratar</nz-breadcrumb-item>
@@ -79,7 +79,7 @@
 
     </div>
   </div>
-  <div nz-row [nzGutter]="16">
+  <div nz-row [nzGutter]="16" style="margin-bottom: 5px">
     <div nz-col
          class="gutter-row align-left"
          [nzSpan]="12" [hidden]="cotacaoForm.invalid">
@@ -159,7 +159,7 @@
   </div>
 
   <div nz-row class="margin-top-10px" [nzGutter]="16" [hidden]="cotacaoForm.invalid">
-    <div nz-col class="gutter-row align-right title" [nzSpan]="24">
+    <div nz-col class="gutter-row align-right title premio" [nzSpan]="24">
       <span>Valor do prêmio: {{contrato.valor | currency:'BRL'}}</span>
     </div>
   </div>
